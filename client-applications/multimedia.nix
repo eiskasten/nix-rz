@@ -1,0 +1,30 @@
+{ config, pkgs, ... }: {
+
+  programs = {
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      vimAlias = true;
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    vlc
+    musescore
+    frescobaldi
+    ardour
+
+    blender
+    gimp3-with-plugins
+    inkscape-with-extensions
+  ];
+
+    services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+}
