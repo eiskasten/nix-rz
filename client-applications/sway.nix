@@ -3,27 +3,32 @@
   services.xserver.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
   programs.sway.enable = true;
-  # programs.waybar.enable = true;
+  programs.waybar.enable = true;
 
   fonts.fontconfig.enable = true;
 
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     swaybg
     swaylock
 
     foot
 
     font-awesome
-   ];
 
-   stylix.enable = true;
-   stylix.autoEnable = true;
-   stylix.polarity = "dark";
-   stylix.cursor = {
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    mako # notification system developed by swaywm maintainer
+  ];
+
+  stylix.enable = true;
+  stylix.autoEnable = true;
+  stylix.polarity = "dark";
+  stylix.cursor = {
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
     size = 24;
-   };
+  };
 
   stylix.image = ./kirsch.png;
 
@@ -39,18 +44,21 @@
     };
 
     monospace = {
-      package = pkgs.jetbrains-mono;
-      name = "Jetbrains Mono";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "Jetbrains Mono Nerd Font";
     };
 
     emoji = {
-      package = pkgs.noto-fonts-emoji;
-      name = "Noto Color Emoji";
+      package = pkgs.nerd-fonts.symbols-only;
+      name = "Symbols Nerd Font";
     };
+
+    
+
   };
 
   # home-manager.users.richi = {
-    # imports = [ stylix.homeManagerModules.stylix ];
+  # imports = [ stylix.homeManagerModules.stylix ];
   # } ; 
   # home-manager.sharedModules = [
   #   {
