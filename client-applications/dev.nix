@@ -26,6 +26,11 @@
 
     kubectl
     vscodium
+
+    mfoc-hardnested
+
+    rustup
+    openjdk24
   ];
 
   virtualisation.docker.enable = true;
