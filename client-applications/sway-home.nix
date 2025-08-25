@@ -94,10 +94,17 @@
 
   # stylix.targets.waybar.font = "emoji";
 
+  wayland.windowManager.sway.checkConfig = false; # required since xkb_layout is registered system-wide which home-manager is not aware of ;(
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
     config = {
+      input = {
+        "*" = {
+          xkb_layout = "kdf";
+        };
+      };
+
       modifier = "Mod4";
       left = "h";
       down = "j";

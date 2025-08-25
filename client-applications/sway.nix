@@ -7,6 +7,14 @@
 
   fonts.fontconfig.enable = true;
 
+  services.xserver.xkb.extraLayouts.kdf = {
+    symbolsFile = ./kdf;
+    description = "Austria (Kempfendorf)";
+    languages = ["ger" "deu" "gsw" "ces" "csz" "slo" "slk"];
+  };
+
+  services.xserver.xkb.layout = "kdf";
+
   environment.systemPackages = with pkgs; [
     swaybg
     swaylock

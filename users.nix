@@ -1,11 +1,11 @@
 { config, pkgs, ... }: {
 
+  security.pam.enableFscrypt = true;
+
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
     enable = true;
-    syntaxHighlighting = {
-      enable = true;
-    };
+    syntaxHighlighting = { enable = true; };
     vteIntegration = true;
     enableBashCompletion = true;
     interactiveShellInit = ''
@@ -43,6 +43,9 @@
     '';
     promptInit = ""; # otherwise it'll override the grml prompt
   };
+
+  # Prevent the new user dialog in zsh
+  system.userActivationScripts.zshrc = "touch .zshrc";
 
   users.users.richi = {
     name = "richi";
