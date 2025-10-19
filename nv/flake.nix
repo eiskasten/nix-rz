@@ -23,12 +23,22 @@
 
                   # Enable Treesitter
                   treesitter.enable = true;
+                  autocomplete.nvim-cmp.enable = true;
+                  comments.comment-nvim.enable = true;
 
                   # Other options will go here. Refer to the config
                   # reference in Appendix B of the nvf manual.
                   # ...
 
-                  git.enable = true;
+                  git = {
+                    enable = true;
+                    git-conflict = {
+                      enable = true;
+                    };
+                    gitsigns = {
+                      enable = true;
+                    };
+                  };
 
                   languages = {
                     rust = {
@@ -54,6 +64,10 @@
                     html = {
                       enable = true;
                     };
+
+                    terraform.enable = true;
+                    yaml.enable = true;
+                    json.enable = true;
                   };
 
                   lsp = {
@@ -62,6 +76,8 @@
                     inlayHints.enable = true;
                     lspSignature.enable = true;
                   };
+
+                  notes.obsidian.enable = false;
                 };
               }
             ];
