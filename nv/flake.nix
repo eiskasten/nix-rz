@@ -20,6 +20,7 @@
                 config.vim = {
                   # Enable custom theming options
                   theme.enable = true;
+                  theme.transparent = true;
                   theme.name = "dracula";
                   theme.style = "dark";
 
