@@ -25,6 +25,14 @@
                 # Other options will go here. Refer to the config
                 # reference in Appendix B of the nvf manual.
                 # ...
+
+                languages = {
+                  rust.enable = true;
+                  nix.enable = true;
+                  python.enable = true;
+                  markdown.enable = true;
+                  html.enable = true;
+                };
               };
             }
           ];
