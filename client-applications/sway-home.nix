@@ -1,4 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   home.username = "richi";
 
   programs.git = {
@@ -7,11 +14,18 @@
   };
   # stylix.enable = true;
   # stylix.fonts = {
-    # emoji = {
-      # package = pkgs.font-awesome_6;
-      # name = "FontAwesome";
-    # };
+  # emoji = {
+  # package = pkgs.font-awesome_6;
+  # name = "FontAwesome";
   # };
+  # };
+
+  programs.firefox = {
+    enable = true;
+    profiles.default = {
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [ ublock-origin ];
+    };
+  };
 
   programs.waybar = {
     enable = true;
@@ -20,10 +34,20 @@
       position = "top";
       height = 8;
       # output = [ "eDP-1" "HDMI-A-1" ];
-      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-left = [
+        "sway/workspaces"
+        "sway/mode"
+      ];
       modules-center = [ ];
-      modules-right =
-        [ "mpris" "wireplumber" "network" "memory" "battery" "clock" "tray" ];
+      modules-right = [
+        "mpris"
+        "wireplumber"
+        "network"
+        "memory"
+        "battery"
+        "clock"
+        "tray"
+      ];
 
       "sway/workspaces" = {
         disable-scroll = true;
@@ -45,7 +69,11 @@
         format = "{volume}% {icon}";
         format-muted = "";
         on-click = "helvum";
-        format-icons = [ "" "" "" ];
+        format-icons = [
+          ""
+          ""
+          ""
+        ];
       };
       memory = {
         interval = 5;
@@ -59,7 +87,13 @@
           critical = 15;
         };
         format = "{capacity}% {icon}";
-        format-icons = [ "" "" "" "" "" ];
+        format-icons = [
+          ""
+          ""
+          ""
+          ""
+          ""
+        ];
       };
 
       clock = {
@@ -110,48 +144,47 @@
       down = "j";
       up = "k";
       right = "l";
-      keybindings = let mod = config.wayland.windowManager.sway.config.modifier;
-      in lib.mkOptionDefault {
-        # Use pactl to adjust volume in PulseAudio.
-        XF86AudioRaiseVolume =
-          "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status";
-        XF86AudioLowerVolume =
-          "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status";
-        XF86AudioMute =
-          "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
-        XF86AudioMicMute =
-          "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
+      keybindings =
+        let
+          mod = config.wayland.windowManager.sway.config.modifier;
+        in
+        lib.mkOptionDefault {
+          # Use pactl to adjust volume in PulseAudio.
+          XF86AudioRaiseVolume = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status";
+          XF86AudioLowerVolume = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status";
+          XF86AudioMute = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
+          XF86AudioMicMute = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
 
-        # screen brightness
-        #bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-        #bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+          # screen brightness
+          #bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+          #bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
-        XF86MonBrightnessDown = "exec brightnessctl set 10%-";
-        XF86MonBrightnessUp = "exec brightnessctl set 10%+";
+          XF86MonBrightnessDown = "exec brightnessctl set 10%-";
+          XF86MonBrightnessUp = "exec brightnessctl set 10%+";
 
-        # Media key bindings using playerctl
-        XF86AudioPlay = "exec --no-startup-id playerctl play-pause";
-        XF86AudioNext = "exec --no-startup-id playerctl next";
-        XF86AudioPrev = "exec --no-startup-id playerctl previous";
-        XF86AudioStop = "exec --no-startup-id playerctl stop";
+          # Media key bindings using playerctl
+          XF86AudioPlay = "exec --no-startup-id playerctl play-pause";
+          XF86AudioNext = "exec --no-startup-id playerctl next";
+          XF86AudioPrev = "exec --no-startup-id playerctl previous";
+          XF86AudioStop = "exec --no-startup-id playerctl stop";
 
-        "${mod}+Ctrl+space" = "exec --no-startup-id playerctl play-pause";
-        "${mod}+Ctrl+Right" = "exec --no-startup-id playerctl next";
-        "${mod}+Ctrl+Left" = "exec --no-startup-id playerctl previous";
+          "${mod}+Ctrl+space" = "exec --no-startup-id playerctl play-pause";
+          "${mod}+Ctrl+Right" = "exec --no-startup-id playerctl next";
+          "${mod}+Ctrl+Left" = "exec --no-startup-id playerctl previous";
 
-        "${mod}+Shift+s" = "exec pavucontrol";
+          "${mod}+Shift+s" = "exec pavucontrol";
 
-        "${mod}+p" = "exec grimshot save active";
-        "${mod}+Shift+p" = "exec grimshot save area";
-        "${mod}+Ctrl+Shift+p" = "exec grimshot save output";
-        "${mod}+Ctrl+p" = "exec grimshot save window";
+          "${mod}+p" = "exec grimshot save active";
+          "${mod}+Shift+p" = "exec grimshot save area";
+          "${mod}+Ctrl+Shift+p" = "exec grimshot save output";
+          "${mod}+Ctrl+p" = "exec grimshot save window";
 
-        # Move workspaces across outputs
-        "${mod}+Alt+Left" = "move workspace to output left";
-        "${mod}+Alt+Down" = "move workspace to output down";
-        "${mod}+Alt+Up" = "move workspace to output up";
-        "${mod}+Alt+Right" = "move workspace to output right";
-      };
+          # Move workspaces across outputs
+          "${mod}+Alt+Left" = "move workspace to output left";
+          "${mod}+Alt+Down" = "move workspace to output down";
+          "${mod}+Alt+Up" = "move workspace to output up";
+          "${mod}+Alt+Right" = "move workspace to output right";
+        };
       # bars = [
       #   ({
       #     position = "top";

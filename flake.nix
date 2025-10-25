@@ -15,24 +15,36 @@
       url = "github:nix-community/stylix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      ...
+    }@inputs:
+    {
 
+      nixosConfigurations.fucik = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          stylix.nixosModules.stylix
+          ./client-applications/dev.nix
+          ./client-applications/multimedia.nix
+          ./client-applications/network.nix
+          ./client-applications/office.nix
+          ./client-applications/security.nix
+          ./client-applications/sway.nix
+          ./users.nix
 
-    nixosConfigurations.fucik = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        stylix.nixosModules.stylix
-        ./client-applications/dev.nix
-        ./client-applications/multimedia.nix
-        ./client-applications/network.nix
-        ./client-applications/office.nix
-        ./client-applications/security.nix
-        ./client-applications/sway.nix
-        ./users.nix
-
-        # make home-manager as a module of nixos
+          # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
@@ -43,7 +55,7 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
-      ];
+        ];
+      };
     };
-  };
 }
