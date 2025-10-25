@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   programs = {
     git = {
@@ -17,7 +18,7 @@
     # so git must be installed first
     git
     vim
-    
+
     curl
 
     jetbrains.idea-ultimate
@@ -33,8 +34,9 @@
     openjdk24
   ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
   virtualisation.libvirtd = {
     enable = true;
   };
 }
+
