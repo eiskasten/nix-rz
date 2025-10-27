@@ -90,6 +90,15 @@
                     formatOnSave = true;
                     inlayHints.enable = true;
                     lspSignature.enable = true;
+                    trouble.enable = true;
+                  };
+
+                  spellcheck = {
+                    enable = true;
+                    languages = [
+                      "en"
+                      "de"
+                    ];
                   };
 
                   notes.obsidian.enable = false;
