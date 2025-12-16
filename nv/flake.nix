@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nvf.url = "github:notashelf/nvf/v0.8";
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs =
@@ -18,6 +18,17 @@
             modules = [
               {
                 config.vim = {
+                  autocmds = [
+                    {
+                      event = [ "FileType" ];
+                      pattern = [
+                        "json"
+                        "jsonc"
+                      ];
+                      command = "setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab";
+                      desc = "Use 2-space indent for JSON";
+                    }
+                  ];
                   # Enable custom theming options
                   theme.enable = true;
                   theme.transparent = true;
@@ -82,7 +93,11 @@
 
                     terraform.enable = true;
                     yaml.enable = true;
-                    json.enable = true;
+                    json = {
+                      enable = true;
+                      lsp.enable = true;
+                      lsp.servers = [ "jsonls" ];
+                    };
                   };
 
                   lsp = {
@@ -91,6 +106,20 @@
                     inlayHints.enable = true;
                     lspSignature.enable = true;
                     trouble.enable = true;
+
+                    servers.jsonls = {
+                      enable = true;
+
+                      settings = {
+                        json = {
+                          format = {
+                            enable = true;
+                            tabSize = 2; # ← change from 8
+                            insertSpaces = true;
+                          };
+                        };
+                      };
+                    };
                   };
 
                   spellcheck = {
