@@ -29,6 +29,13 @@
                       desc = "Use 2-space indent for JSON";
                     }
                   ];
+
+                  # Enable wayland clipboard
+                  clipboard = {
+                    enable = true;
+                    providers.wl-copy.enable = true;
+                    registers = "unnamedplus";
+                  };
                   # Enable custom theming options
                   theme.enable = true;
                   theme.transparent = true;
