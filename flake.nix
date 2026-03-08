@@ -27,9 +27,10 @@
       nixpkgs,
       home-manager,
       stylix,
+      firefox-addons,
       ...
     }@inputs:
     {
-      nixosConfigurations.fucik = ./hosts/fucik.nix inputs;
+      nixosConfigurations.fucik = import ./hosts/fucik.nix inputs;
     };
 }
