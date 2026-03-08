@@ -1,11 +1,14 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   security.pam.enableFscrypt = true;
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
     enable = true;
-    syntaxHighlighting = { enable = true; };
+    syntaxHighlighting = {
+      enable = true;
+    };
     vteIntegration = true;
     enableBashCompletion = true;
     interactiveShellInit = ''
@@ -47,8 +50,8 @@
   # Prevent the new user dialog in zsh
   system.userActivationScripts.zshrc = "touch .zshrc";
 
-  users.users.richi = {
-    name = "richi";
+  users.users.r3s = {
+    name = "r3s";
     createHome = true;
     description = "Richard Stöckl";
     isNormalUser = true;

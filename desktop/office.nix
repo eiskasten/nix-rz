@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   programs = {
     firefox.enable = true;
@@ -15,10 +16,11 @@
     asciidoctor-with-extensions
     libreoffice-fresh
     texliveFull
+    typst
 
     telegram-desktop
   ];
 
-
   services.printing.enable = true;
 }
+
