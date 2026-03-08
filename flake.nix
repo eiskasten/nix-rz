@@ -2,7 +2,7 @@
   description = "Flake with basic configurations for rz";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -34,15 +34,11 @@
       nixosConfigurations.fucik = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
+
         modules = [
           stylix.nixosModules.stylix
-          ./client-applications/dev.nix
-          ./client-applications/multimedia.nix
-          ./client-applications/network.nix
-          ./client-applications/office.nix
-          ./client-applications/security.nix
-          ./client-applications/sway.nix
           ./users.nix
+          ./desktop
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -54,6 +50,7 @@
             home-manager.users.richi = import ./client-applications/sway-home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };

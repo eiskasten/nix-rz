@@ -31,7 +31,7 @@
     mfoc-hardnested
 
     rustup
-    openjdk24
+    openjdk25
   ];
 
   virtualisation.podman.enable = true;
@@ -39,4 +39,3 @@
     enable = true;
   };
 }
-

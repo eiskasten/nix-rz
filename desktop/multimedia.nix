@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   programs = {
     git = {
@@ -14,8 +15,8 @@
 
   environment.systemPackages = with pkgs; [
     vlc
-    musescore
-    frescobaldi
+    # musescore
+    # frescobaldi
     ardour
 
     blender
@@ -23,8 +24,9 @@
     inkscape-with-extensions
   ];
 
-    services.pipewire = {
+  services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
 }
+
