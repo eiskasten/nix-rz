@@ -74,10 +74,14 @@
                   };
 
                   languages = {
+                    enableTreesitter = true;
                     rust = {
                       enable = true;
                     };
                     go = {
+                      enable = true;
+                    };
+                    elixir = {
                       enable = true;
                     };
 
