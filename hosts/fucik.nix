@@ -2,6 +2,7 @@
   nixpkgs,
   home-manager,
   stylix,
+  firefox-addons,
   ...
 }@inputs:
 nixpkgs.lib.nixosSystem {
@@ -20,10 +21,17 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
 
-      home-manager.users.r3s = import ../home;
+      home-manager.users.r3s = ../home;
 
       # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-      home-manager.extraSpecialArgs = { inherit inputs; };
+      home-manager.extraSpecialArgs = {
+        inherit
+          nixpkgs
+          home-manager
+          stylix
+          firefox-addons
+          ;
+      };
     }
   ];
 }
