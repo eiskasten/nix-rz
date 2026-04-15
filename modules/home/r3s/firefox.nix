@@ -1,5 +1,8 @@
 { self, inputs, ... }:
 {
+  imports = [
+    inputs.flakeModules.firefox-addons.module
+  ];
   flake.homeModules.r3sFirefox =
     { firefox-addons, pkgs, ... }:
     {
