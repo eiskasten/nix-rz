@@ -1,4 +1,4 @@
-{ self, inputs }:
+{ self, inputs, ... }:
 {
   flake.homeModules.r3sDev =
     { ... }:

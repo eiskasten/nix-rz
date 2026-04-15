@@ -6,15 +6,23 @@
   flake.homeConfigurations.r3s = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     modules = [
-      self.homeModules.r3sDev
-      self.homeModules.r3sFirefox
-      self.homeModules.r3sMail
-      self.homeModules.r3sSway
+      self.homeModules.r3sModule
       {
         home.username = "r3s";
         home.homeDirectory = "/home/r3s";
-        home.stateVersion = "25.05";
       }
     ];
   };
+
+  flake.homeModules.r3sModule =
+    { pkgs, ... }:
+    {
+      imports = [
+        self.homeModules.r3sDev
+        self.homeModules.r3sFirefox
+        self.homeModules.r3sMail
+        self.homeModules.r3sSway
+      ];
+      home.stateVersion = "25.05";
+    };
 }
