@@ -14,5 +14,7 @@
         initialPassword = "123456";
         extraGroups = [ "wheel" ];
       };
+
+      home-manager.users.r3s = self.homeModules.r3sModule;
     };
 }

@@ -20,4 +20,3 @@
       networking.firewall.enable = true;
     };
 }
-
