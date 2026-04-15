@@ -23,6 +23,6 @@
         self.homeModules.r3sMail
         self.homeModules.r3sSway
       ];
-      home.stateVersion = "25.05";
+      home.stateVersion = "26.05";
     };
 }

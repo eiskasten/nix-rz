@@ -1,15 +1,16 @@
 { self, inputs, ... }:
 {
-  imports = [
-    inputs.flakeModules.firefox-addons.module
-  ];
+  # imports = [
+  #   inputs.firefox-addons.flakeModules.firefox-addons
+  # ];
   flake.homeModules.r3sFirefox =
-    { firefox-addons, pkgs, ... }:
+    { pkgs, ... }:
     {
+      stylix.targets.firefox.profileNames = [ "default" ];
       programs.firefox = {
         enable = true;
         profiles.default = {
-          extensions.packages = with firefox-addons.packages.${pkgs.system}; [ ublock-origin ];
+          extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [ ublock-origin ];
           settings = {
             extensions.autoDisableScopes = 0;
           };
