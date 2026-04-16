@@ -44,6 +44,8 @@
 
                   # Enable Treesitter
                   treesitter.enable = true;
+                  treesitter.context.enable = true;
+                  treesitter.indent.enable = false;
                   autocomplete.nvim-cmp.enable = true;
                   comments.comment-nvim.enable = true;
 
