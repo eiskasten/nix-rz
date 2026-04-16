@@ -99,6 +99,13 @@
 
                     markdown = {
                       enable = true;
+                      extensions = {
+                        markview-nvim.enable = true;
+                      };
+                      format = {
+                        enable = true;
+                        type = [ "prettierd" ];
+                      };
                     };
                     html = {
                       enable = true;
