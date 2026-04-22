@@ -9,10 +9,14 @@
 
         self.nixosModules.myHomeManager
 
+        inputs.sops-nix.nixosModules.sops
+
         self.nixosModules.dev
         self.nixosModules.shell
         self.nixosModules.mail
         self.nixosModules.multimedia
+        self.nixosModules.network
+        self.nixosModules.brucknerModule
         self.nixosModules.office
         self.nixosModules.security
         inputs.stylix.nixosModules.stylix
@@ -20,6 +24,8 @@
         self.nixosModules.sway
         self.nixosModules.users
       ];
+
+      sops.defaultSopsFile = ../../secrets/net.yaml;
 
       nix.settings.experimental-features = [
         "nix-command"
