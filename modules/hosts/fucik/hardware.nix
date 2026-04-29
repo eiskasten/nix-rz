@@ -18,6 +18,20 @@
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
+      virtualisation.vmVariant = {
+        virtualisation = {
+          cores = 4;
+          memorySize = 4096;
+          forwardPorts = [
+            {
+              host.port = 2022;
+              guest.port = 22;
+              from = "host";
+            }
+          ];
+        };
+      };
+
       boot.initrd.availableKernelModules = [
         "xhci_pci"
         "nvme"
