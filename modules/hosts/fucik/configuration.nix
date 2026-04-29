@@ -1,4 +1,7 @@
 { self, inputs, ... }:
+let
+  shortKeyname = "fucik.txt";
+in
 {
   flake.nixosModules.fucikConfiguration =
     { pkgs, lib, ... }:
@@ -25,6 +28,8 @@
         self.nixosModules.users
       ];
 
+      sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";
+      sops.age.generateKey = false;
       sops.defaultSopsFile = ../../secrets/net.yaml;
 
       nix.settings.experimental-features = [
