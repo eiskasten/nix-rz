@@ -1,0 +1,7 @@
+#
+*.qcow2
+
+# ignore sops age private keys but not public keys
+modules/secrets/age/*.txt
+!modules/secrets/age/*.txt.sops
+
