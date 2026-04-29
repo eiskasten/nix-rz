@@ -5,8 +5,16 @@
 
 keys:
   - &r3s 4EF3ABE048F0F9104B2EE99E1655AA01E42A9CBC
+  - &fucik age13v0mukn6x7dne3raa0jfjvs5duetjt4zj78hjmvh4ew88ytapy8qpssstp
 creation_rules:
-  - path_regex: modules/secrets/[^/]+\.(yaml|json|env|ini)$
-    key_groups:
-    - pgp:
+  # rule for encrypting the VM private key
+  - path_regex: modules/secrets/age/.*\.txt\.sops$
+    pgp:
       - *r3s
+
+  # normal secrets
+  - path_regex: modules/secrets/.*\.(yaml|json|env|ini)$
+    pgp:
+      - *r3s
+    age:
+      - *fucik
