@@ -9,6 +9,9 @@
 
     wrapped-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
