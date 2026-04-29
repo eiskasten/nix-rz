@@ -12,7 +12,10 @@
         description = "Richard Stöckl";
         isNormalUser = true;
         initialPassword = "123456";
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
       };
 
       home-manager.users.r3s = self.homeModules.r3sModule;
