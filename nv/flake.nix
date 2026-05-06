@@ -110,8 +110,9 @@
                     html = {
                       enable = true;
                     };
-                    typst.enable = true;
-
+                    typst = {
+                      enable = true;
+                    };
                     terraform.enable = true;
                     yaml.enable = true;
                     json = {
