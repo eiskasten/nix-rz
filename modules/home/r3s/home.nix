@@ -22,6 +22,7 @@
         self.homeModules.r3sFirefox
         self.homeModules.r3sMail
         self.homeModules.r3sSway
+        self.homeModules.r3sPass
       ];
       home.stateVersion = "26.05";
     };
