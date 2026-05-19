@@ -22,6 +22,7 @@ in
         self.nixosModules.brucknerModule
         self.nixosModules.office
         self.nixosModules.security
+        self.nixosModules.localeModule
         inputs.stylix.nixosModules.stylix
 
         self.nixosModules.sway
