@@ -14,9 +14,8 @@
       swapLabel = "fucik-swap";
     in
     {
-      imports = [
-        (modulesPath + "/installer/scan/not-detected.nix")
-      ];
+
+      hardware.facter.reportPath = ./facter.json;
 
       virtualisation.vmVariant = {
         virtualisation = {
@@ -31,16 +30,6 @@
           ];
         };
       };
-
-      boot.initrd.availableKernelModules = [
-        "xhci_pci"
-        "nvme"
-        "usbhid"
-      ];
-      boot.initrd.kernelModules = [ ];
-      boot.kernelModules = [ "kvm-intel" ];
-      boot.extraModulePackages = [ ];
-
       fileSystems."/" = {
         device = "/dev/disk/by-label/${rootLabel}";
         fsType = "btrfs";
@@ -72,9 +61,6 @@
         "/dev/disk/by-uuid/5e96e7d1-c056-4da9-aa64-c156f148727f";
 
       swapDevices = [ ];
-
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-      hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
     };
 }
