@@ -21,6 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf.url = "github:notashelf/nvf";
+    musnix.url = "github:musnix/musnix";
 
     stylix = {
       url = "github:nix-community/stylix/master";
