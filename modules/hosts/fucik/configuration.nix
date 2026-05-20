@@ -33,9 +33,6 @@ in
 
         self.nixosModules.sway
         self.nixosModules.users
-      ]
-      ++ lib.optionals (!config.virtualisation.isVmVariant) [
-        self.nixosModules.fucikFacterModule
       ];
 
       sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";

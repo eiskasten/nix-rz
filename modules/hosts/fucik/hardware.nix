@@ -14,6 +14,9 @@
       swapLabel = "fucik-swap";
     in
     {
+      imports = [
+        self.nixosModules.fucikFacterModule
+      ];
       virtualisation.vmVariant = {
         virtualisation = {
           cores = 4;
