@@ -13,6 +13,7 @@
         isNormalUser = true;
         initialPassword = "123456";
         extraGroups = [
+          "audio"
           "wheel"
           "networkmanager"
         ];
