@@ -14,9 +14,6 @@
       swapLabel = "fucik-swap";
     in
     {
-
-      hardware.facter.reportPath = ./facter.json;
-
       virtualisation.vmVariant = {
         virtualisation = {
           cores = 4;
