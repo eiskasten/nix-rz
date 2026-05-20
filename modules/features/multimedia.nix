@@ -18,9 +18,6 @@
 
       environment.systemPackages = with pkgs; [
         vlc
-        # musescore
-        # frescobaldi
-        ardour
 
         blender
         gimp3-with-plugins

@@ -21,6 +21,7 @@ in
         self.nixosModules.network
         self.nixosModules.brucknerModule
         self.nixosModules.office
+        self.nixosModules.audioWorkstationModule
         self.nixosModules.security
         self.nixosModules.localeModule
         inputs.stylix.nixosModules.stylix
