@@ -8,6 +8,9 @@
         git = {
           enable = true;
           lfs.enable = true;
+          config = {
+            safe.directory = "/home/r3s/src/nix-rz";
+          };
         };
 
         neovim = {
