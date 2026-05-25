@@ -13,6 +13,7 @@ in
     {
       imports = [
         self.nixosModules.fucikHardware
+        self.nixosModules.fucikDisko
         # add features here
 
         self.nixosModules.myHomeManager
