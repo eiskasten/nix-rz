@@ -7,6 +7,9 @@
         inputs.disko.nixosModules.disko
       ];
 
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+
       disko.devices = {
         disk = {
           fucik-internal = {
