@@ -366,12 +366,14 @@
           }
 
           #wireplumber {
-              background-color: #fff0f5;
-              color: #000000;
+             /*background-color: #f1c40f;
+              color: #000000;*/
           }
 
           #wireplumber.muted {
-              background-color: #f53c3c;
+              /*background-color: #90b1b1;
+              color: #2a5c45;*/
+              color: #f1c40f;
           }
 
           #custom-media {
