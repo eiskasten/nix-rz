@@ -18,6 +18,7 @@
     { pkgs, ... }:
     {
       imports = [
+        self.homeModules.r3sXDG
         self.homeModules.r3sDev
         self.homeModules.r3sSSH
         self.homeModules.r3sFirefox
