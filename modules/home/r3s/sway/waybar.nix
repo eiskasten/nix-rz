@@ -62,7 +62,6 @@
             tooltip-format-disconnected = "MPD (disconnected)";
           };
           mpris = {
-            interval = 0;
             artist-len = 20;
             title-len = 40;
             format = "{player}({status}): {title} - {artist}";
