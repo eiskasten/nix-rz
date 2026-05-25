@@ -21,6 +21,7 @@
         self.homeModules.r3sDev
         self.homeModules.r3sSSH
         self.homeModules.r3sFirefox
+        self.homeModules.r3sMultimedia
         self.homeModules.r3sMail
 
         self.homeModules.r3sSway
