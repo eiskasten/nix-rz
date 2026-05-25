@@ -5,16 +5,17 @@
     {
       programs.waybar = {
         enable = true;
+        systemd.enable = true;
         settings.main = {
           layer = "top";
           position = "top";
-          height = 8;
+          # height = 8;
           # output = [ "eDP-1" "HDMI-A-1" ];
           modules-left = [
             "sway/workspaces"
             "sway/mode"
             "sway/scratchpad"
-            "custom/media"
+            # "custom/media"
           ];
           modules-center = [ ];
           modules-right = [
@@ -62,9 +63,11 @@
             tooltip-format-disconnected = "MPD (disconnected)";
           };
           mpris = {
+            # interval = 0;
             artist-len = 20;
             title-len = 40;
             format = "{player}({status}): {title} - {artist}";
+            # ignored-players = [ "firefox" ];
           };
 
           "network#lan" = {
@@ -116,7 +119,7 @@
           };
 
           battery = {
-            bat = "BAT2";
+            bat = "BAT0";
             interval = 60;
             states = {
               warning = 30;

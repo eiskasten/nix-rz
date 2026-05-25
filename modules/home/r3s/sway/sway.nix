@@ -26,6 +26,7 @@
       wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
+        systemd.enable = true;
         config = {
           input = {
             "*" = {
