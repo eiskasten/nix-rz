@@ -106,7 +106,7 @@
         settings = {
           "*" = {
             ForwardAgent = false;
-            AddKeysToAgent = "no";
+            AddKeysToAgent = "yes";
             Compression = false;
             ServerAliveInterval = 0;
             ServerAliveCountMax = 3;
@@ -119,6 +119,8 @@
         }
         // sshHosts;
       };
+
+      services.ssh-agent.enable = true;
 
       systemd.user.services.generate-missing-ssh-keys = {
         Unit = {
