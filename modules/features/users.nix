@@ -11,7 +11,7 @@
         createHome = true;
         description = "Richard Stöckl";
         isNormalUser = true;
-        initialPassword = "123456";
+        initialHashedPassword = "$y$j9T$6X.bKXXMwFX6VwHVfrJpY1$8nU.HkBON8VWD90.HH83MNniB2qFi1OLBhMRjMG3E.C";
         extraGroups = [
           "audio"
           "wheel"
