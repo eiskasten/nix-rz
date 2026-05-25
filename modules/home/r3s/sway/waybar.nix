@@ -166,7 +166,7 @@
         };
 
         style = ''
-                  * {
+          * {
               /* `otf-font-awesome` is required to be installed for icons */
               font-family: JetBrainsMono Nerd Font;
               font-size: 13px;
@@ -258,27 +258,27 @@
               border-bottom: 3px solid #ffffff;
           }
 
-          #clock;
-          #battery;
-          #cpu;
-          #memory;
-          #disk;
-          #temperature;
-          #backlight;
-          #network;
-          #pulseaudio;
-          #wireplumber;
-          #custom-media;
-          #tray;
-          #mode;
-          #idle_inhibitor;
-          #scratchpad;
+          #clock,
+          #battery,
+          #cpu,
+          #memory,
+          #disk,
+          #temperature,
+          #backlight,
+          #network,
+          #pulseaudio,
+          #wireplumber,
+          #custom-media,
+          #tray,
+          #mode,
+          #idle_inhibitor,
+          #scratchpad,
           #mpd {
               padding: 0 10px;
               color: #ffffff;
           }
 
-          #window;
+          #window,
           #workspaces {
               margin: 0 4px;
           }
