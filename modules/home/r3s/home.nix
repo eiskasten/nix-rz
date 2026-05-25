@@ -27,6 +27,7 @@
         self.homeModules.r3sSway
         self.homeModules.r3sWaybar
         self.homeModules.r3sKanshi
+        self.homeModules.r3sRofi
 
         self.homeModules.r3sPass
       ];
