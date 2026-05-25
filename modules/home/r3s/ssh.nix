@@ -7,86 +7,84 @@
       pkgs,
       ...
     }:
-    {
-      programs.ssh = {
-        enable = true;
-        matchBlocks = {
-          "github.com" = {
-            hostname = "github.com";
-            user = "git";
-            port = 22;
-            identityFile = "~/.ssh/community/github.com";
-            identitiesOnly = true;
-          };
-          "schubert" = {
-            hostname = "schubert.internal";
-            user = "richi";
-            identityFile = "~/.ssh/rz/schubert";
-            identitiesOnly = true;
-          };
-          "haydn" = {
-            hostname = "haydn.internal";
-            user = "richi";
-            identityFile = "~/.ssh/rz/haydn";
-            identitiesOnly = true;
-          };
-
-          "mvl.at" = {
-            hostname = "mvl.at";
-            user = "richi";
-            port = 2622;
-            identityFile = "~/.ssh/community/mvl";
-            identitiesOnly = true;
-          };
-          "aur.archlinux.org" = {
-            hostname = "aur.archlinux.org";
-            user = "aur";
-            identityFile = "~/.ssh/community/aur";
-            identitiesOnly = true;
-          };
-          "florentiner.armada.stoeckl.dev" = {
-            hostname = "florentiner.armada.stoeckl.dev";
-            user = "root";
-            port = 2299;
-            identityFile = "~/.ssh/commercial/armada";
-            identitiesOnly = true;
-          };
-          "gladiator.armada.stoeckl.dev" = {
-            hostname = "gladiator.armada.stoeckl.dev";
-            user = "root";
-            port = 2299;
-            identityFile = "~/.ssh/commercial/armada";
-            identitiesOnly = true;
-          };
-          "triglav.armada.stoeckl.dev" = {
-            hostname = "triglav.armada.stoeckl.dev";
-            user = "root";
-            port = 2299;
-            identityFile = "~/.ssh/commercial/armada";
-            identitiesOnly = true;
-          };
-          "dvorak" = {
-            hostname = "dvorak.internal";
-            user = "root";
-            identityFile = "~/.ssh/rz/dvorak";
-            identitiesOnly = true;
-          };
+    let
+      sshHosts = {
+        "github.com" = {
+          HostName = "github.com";
+          User = "git";
+          Port = 22;
+          IdentityFile = "~/.ssh/community/github.com";
+          IdentitiesOnly = true;
         };
-
+        "schubert" = {
+          HostName = "schubert.internal";
+          User = "richi";
+          IdentityFile = "~/.ssh/rz/schubert";
+          IdentitiesOnly = true;
+        };
+        "haydn" = {
+          HostName = "haydn.internal";
+          User = "richi";
+          IdentityFile = "~/.ssh/rz/haydn";
+          IdentitiesOnly = true;
+        };
+        "mvl.at" = {
+          HostName = "mvl.at";
+          User = "richi";
+          Port = 2622;
+          IdentityFile = "~/.ssh/community/mvl";
+          IdentitiesOnly = true;
+        };
+        "aur.archlinux.org" = {
+          HostName = "aur.archlinux.org";
+          User = "aur";
+          IdentityFile = "~/.ssh/community/aur";
+          IdentitiesOnly = true;
+        };
+        "florentiner.armada.stoeckl.dev" = {
+          HostName = "florentiner.armada.stoeckl.dev";
+          User = "root";
+          Port = 2299;
+          IdentityFile = "~/.ssh/commercial/armada";
+          IdentitiesOnly = true;
+        };
+        "gladiator.armada.stoeckl.dev" = {
+          HostName = "gladiator.armada.stoeckl.dev";
+          User = "root";
+          Port = 2299;
+          IdentityFile = "~/.ssh/commercial/armada";
+          IdentitiesOnly = true;
+        };
+        "triglav.armada.stoeckl.dev" = {
+          HostName = "triglav.armada.stoeckl.dev";
+          User = "root";
+          Port = 2299;
+          IdentityFile = "~/.ssh/commercial/armada";
+          IdentitiesOnly = true;
+        };
+        "dvorak" = {
+          HostName = "dvorak.internal";
+          User = "root";
+          IdentityFile = "~/.ssh/rz/dvorak";
+          IdentitiesOnly = true;
+        };
       };
-      home.activation.generateSshKeys = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        mkdir -p "$HOME/.ssh"
-        chmod 700 "$HOME/.ssh"
+
+      keygenScript = pkgs.writeShellScript "generate-missing-ssh-keys" ''
+        set -eu
 
         ${lib.concatStringsSep "\n" (
           lib.mapAttrsToList (
             host: cfg:
             let
-              keyFile = builtins.replaceStrings [ "~" ] [ config.home.homeDirectory ] cfg.identityFile;
+              keyFile = builtins.replaceStrings [ "~" ] [ config.home.homeDirectory ] cfg.IdentityFile;
             in
             ''
+              mkdir -p "$(dirname "${keyFile}")"
+              chmod 700 "$(dirname "${keyFile}")"
+
               if [ ! -f "${keyFile}" ]; then
-                echo "Generating SSH key for ${host}"
+                echo "Generating SSH key for ${host}: ${keyFile}"
                 ${pkgs.openssh}/bin/ssh-keygen \
                   -t ed25519 \
                   -f "${keyFile}" \
@@ -95,10 +93,58 @@
               fi
 
               chmod 600 "${keyFile}"
-              chmod 644 "${keyFile}.pub"
+              [ -f "${keyFile}.pub" ] && chmod 644 "${keyFile}.pub"
             ''
-          ) config.programs.ssh.matchBlocks
+          ) (lib.filterAttrs (_: cfg: cfg ? IdentityFile && cfg.IdentityFile != null) sshHosts)
         )}
       '';
+    in
+    {
+      programs.ssh = {
+        enable = true;
+        enableDefaultConfig = false;
+        settings = {
+          "*" = {
+            ForwardAgent = false;
+            AddKeysToAgent = "no";
+            Compression = false;
+            ServerAliveInterval = 0;
+            ServerAliveCountMax = 3;
+            HashKnownHosts = false;
+            UserKnownHostsFile = "~/.ssh/known_hosts";
+            ControlMaster = "no";
+            ControlPath = "~/.ssh/master-%r@%n:%p";
+            ControlPersist = "no";
+          };
+        }
+        // sshHosts;
+      };
+
+      systemd.user.services.generate-missing-ssh-keys = {
+        Unit = {
+          Description = "Generate missing SSH keys referenced by Home Manager SSH config";
+        };
+
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${keygenScript}";
+        };
+      };
+
+      systemd.user.timers.generate-missing-ssh-keys = {
+        Unit = {
+          Description = "Periodically generate missing SSH keys";
+        };
+
+        Timer = {
+          OnBootSec = "30s";
+          OnUnitActiveSec = "1h";
+          Unit = "generate-missing-ssh-keys.service";
+        };
+
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+      };
     };
 }
