@@ -7,7 +7,7 @@
         enable = true;
         settings = {
           user = {
-            name = "eiskasten";
+            name = "Richard Stöckl";
             email = "richard.stoeckl@aon.at";
           };
 
