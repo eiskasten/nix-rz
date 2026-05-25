@@ -8,11 +8,6 @@
       modulesPath,
       ...
     }:
-    let
-      rootLabel = "fucik-root";
-      bootLabel = "fucik-boot";
-      swapLabel = "fucik-swap";
-    in
     {
       imports = [
         self.nixosModules.fucikFacterModule
