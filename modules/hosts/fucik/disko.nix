@@ -1,8 +1,12 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.fucikDisko =
     { ... }:
     {
+      imports = [
+        inputs.disko.nixosModules.disko
+      ];
+
       disko.devices = {
         disk = {
           fucik-internal = {
