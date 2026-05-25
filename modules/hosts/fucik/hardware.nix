@@ -18,6 +18,7 @@
         self.nixosModules.fucikFacterModule
       ];
       virtualisation.vmVariant = {
+        hardware.facter.reportPath = lib.mkForce null;
         virtualisation = {
           cores = 4;
           memorySize = 4096;
