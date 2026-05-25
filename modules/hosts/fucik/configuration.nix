@@ -40,6 +40,8 @@ in
       sops.age.generateKey = false;
       sops.defaultSopsFile = ../../secrets/net.yaml;
 
+      networking.hostName = "fucik";
+
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
