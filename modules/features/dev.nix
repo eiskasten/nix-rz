@@ -18,6 +18,13 @@
           vimAlias = true;
         };
       };
+
+      programs.bat.enable = true;
+
+      environment.variables = {
+        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+        MANGROFOPT = "-c";
+      };
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
