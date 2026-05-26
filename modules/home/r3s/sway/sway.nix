@@ -10,6 +10,10 @@
     }:
     {
 
+      home.packages = [
+        pkgs.sway-contrib.grimshot
+      ];
+
       # stylix.enable = true;
       # stylix.fonts = {
       # emoji = {
