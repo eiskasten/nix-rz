@@ -69,6 +69,9 @@
 
               "${mod}+Shift+s" = "exec pavucontrol";
 
+              "${mod}+d" = "exec rofi -show drun";
+              "${mod}+Shift+w" = "exec rofi -show window";
+
               "${mod}+p" = "exec grimshot save active";
               "${mod}+Shift+p" = "exec grimshot save area";
               "${mod}+Ctrl+Shift+p" = "exec grimshot save output";
