@@ -25,6 +25,11 @@
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
         MANGROFOPT = "-c";
       };
+
+      environment.shellAliases = {
+        nv = "vim";
+      };
+
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
