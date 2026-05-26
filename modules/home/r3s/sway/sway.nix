@@ -35,6 +35,7 @@
           input = {
             "*" = {
               xkb_layout = "kdf";
+              xkb_options = "srvrkeys:none";
             };
           };
 

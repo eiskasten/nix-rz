@@ -31,6 +31,7 @@
       };
 
       services.xserver.xkb.layout = "kdf";
+      services.xserver.xkb.options = "srvrkeys:none";
 
       environment.systemPackages = with pkgs; [
         swaybg
