@@ -1,15 +1,41 @@
 { ... }:
 {
   flake.homeModules.r3sWaybar =
-    { ... }:
+    { config, lib, ... }:
+    let
+      base16Names = [
+        "base00"
+        "base01"
+        "base02"
+        "base03"
+        "base04"
+        "base05"
+        "base06"
+        "base07"
+        "base08"
+        "base09"
+        "base0A"
+        "base0B"
+        "base0C"
+        "base0D"
+        "base0E"
+        "base0F"
+      ];
+
+      colors = lib.genAttrs base16Names (name: config.lib.stylix.colors.${name});
+      stylixColorDefs = lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (name: value: "@define-color stylix-${name} #${value};") colors
+      );
+    in
     {
+      stylix.targets.waybar.addCss = false;
       programs.waybar = {
         enable = true;
         systemd.enable = true;
         settings.main = {
           layer = "top";
           position = "top";
-          # height = 8;
+          height = 8;
           # output = [ "eDP-1" "HDMI-A-1" ];
           modules-left = [
             "sway/workspaces"
@@ -33,7 +59,7 @@
 
           "sway/workspaces" = {
             disable-scroll = true;
-            all-outputs = true;
+            all-outputs = false;
           };
 
           mpd = {
@@ -63,11 +89,9 @@
             tooltip-format-disconnected = "MPD (disconnected)";
           };
           mpris = {
-            # interval = 0;
             artist-len = 20;
             title-len = 40;
             format = "{player}({status}): {title} - {artist}";
-            # ignored-players = [ "firefox" ];
           };
 
           "network#lan" = {
@@ -168,6 +192,15 @@
         };
 
         style = ''
+          @define-color bg       #${colors.base00};
+          @define-color fg       #${colors.base05};
+          @define-color accent   #${colors.base0D};
+          @define-color critical #${colors.base08};
+          @define-color warn     #${colors.base0A};
+          @define-color ok       #${colors.base0C};
+
+          ${stylixColorDefs}
+
           * {
               /* `otf-font-awesome` is required to be installed for icons */
               font-family: JetBrainsMono Nerd Font;
@@ -175,38 +208,22 @@
           }
 
           window#waybar {
-              background-color: #222222;
-              border-bottom: 1px solid rgba(100, 114, 125, 0.5);
-              color: #ffffff;
+              background-color: @bg;
+              color: @fg;
+              border-bottom: 1px solid #${colors.base03};
+
               transition-property: background-color;
-              transition-duration: .5s;
+              transition-duration: 0s;
           }
 
           window#waybar.hidden {
               opacity: 0.2;
           }
 
-          /*
-          window#waybar.empty {
-              background-color: transparent;
-          }
-          window#waybar.solo {
-              background-color: #FFFFFF;
-          }
-          */
-
-          window#waybar.termite {
-              background-color: #3F3F3F;
-          }
-
-          window#waybar.chromium {
-              background-color: #000000;
-              border: none;
-          }
-
           button {
               /* Use box-shadow instead of border so the text isn't offset */
-              box-shadow: inset 0 -1px rgba(100, 114, 125, 0.5);
+              /* box-shadow: inset 0 -1px rgba(100, 114, 125, 0.5); */
+              box-shadow: none;
               /* Avoid rounded borders under each button name */
               /* border: solid 1px #ffffff; */
               /* border: none; */
@@ -215,7 +232,6 @@
           /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
           button:hover {
               background: inherit;
-              /* box-shadow: inset 0 -3px #ffffff; */
           }
 
           #workspaces button { /*sway: inactive */
@@ -226,31 +242,21 @@
               border: solid 1px #333333;
           }
 
-          /* #workspaces button:hover { */
-          /*     background: rgba(0, 0, 0, 0.2); */
-          /*     background-color: #5F676A; */
-          /* } */
-
           #workspaces button.visible { /*sway: active */
-              /*background-color: #285577;*/
               background-color: #5F676A;
-              color: #FFFFFF;
-              /*border: 1px solid #4C7899;*/
-              /*box-sizing: border-box;*/
-              box-shadow: inset 0 -1px #333333;
+              color: @fg;
+              box-shadow: none;
           }
 
           #workspaces button.focused { /*sway: focused */
-              background-color: #285577;
-              color: #FFFFFF;
-              /*border: 1px solid #4C7899;*/
-              /*box-sizing: border-box;*/
-              box-shadow: inset 0 -1px #4C7899;
-              border-color: #4C7899;
+              background-color: #${colors.base0D};
+              color: #${colors.base00};
+              box-shadow: none;
+              border-color: rgba(0, 0, 0, 0.2);
           }
 
           #workspaces button.urgent {
-              background-color: #900000;
+              background-color: @critical;
               border-color: #2F343A;
               color: #FFFFFF;
           }
@@ -277,12 +283,17 @@
           #scratchpad,
           #mpd {
               padding: 0 10px;
-              color: #ffffff;
           }
 
           #window,
           #workspaces {
               margin: 0 4px;
+          }
+
+          .modules-left,
+          .modules-center,
+          .modules-right {
+              color: @fg;
           }
 
           /* If workspaces is the leftmost module, omit left margin */
@@ -296,17 +307,12 @@
           }
 
           #clock {
-              /*background-color: #64727D;*/
           }
 
           #battery {
-              /*background-color: #ffffff;
-              color: #000000;*/
           }
 
           #battery.charging, #battery.plugged {
-              /*color: #ffffff;
-              background-color: #26A65B;*/
           }
 
           @keyframes blink {
@@ -317,8 +323,8 @@
           }
 
           #battery.critical:not(.charging) {
-              background-color: #f53c3c;
-              color: #ffffff;
+              background-color: #${colors.base08};
+              color: #${colors.base00};
               animation-name: blink;
               animation-duration: 0.5s;
               animation-timing-function: linear;
@@ -331,52 +337,37 @@
           }
 
           #cpu {
-              /*background-color: #2ecc71;
-              color: #000000;*/
           }
 
           #memory {
-              /*background-color: #9b59b6;*/
           }
 
           #disk {
-              /*background-color: #964B00;*/
           }
 
           #backlight {
-              /*background-color: #90b1b1;*/
           }
 
           #network {
-              /*background-color: #2980b9;*/
-              color: #00ff00;
+              color: @ok;
           }
 
           #network.disconnected {
-              /*background-color: #f53c3c;*/
-              color: #ff0000;
+              color: @fg;
           }
 
           #pulseaudio {
-             /*background-color: #f1c40f;
-              color: #000000;*/
           }
 
           #pulseaudio.muted {
-              /*background-color: #90b1b1;
-              color: #2a5c45;*/
-              color: #f1c40f;
+              color: @warn;
           }
 
           #wireplumber {
-             /*background-color: #f1c40f;
-              color: #000000;*/
           }
 
           #wireplumber.muted {
-              /*background-color: #90b1b1;
-              color: #2a5c45;*/
-              color: #f1c40f;
+              color: @warn;
           }
 
           #custom-media {
@@ -394,15 +385,13 @@
           }
 
           #temperature {
-              background-color: #f0932b;
           }
 
           #temperature.critical {
-              background-color: #eb4d4b;
+              color: @critical;
           }
 
           #tray {
-              /*background-color: #2980b9;*/
           }
 
           #tray > .passive {
@@ -411,7 +400,7 @@
 
           #tray > .needs-attention {
               -gtk-icon-effect: highlight;
-              background-color: #eb4d4b;
+              background-color: @critical;
           }
 
           #idle_inhibitor {
@@ -419,49 +408,30 @@
           }
 
           #idle_inhibitor.activated {
-              background-color: #ecf0f1;
-              color: #2d3436;
           }
 
           #mpd {
-              background-color: #66cc99;
-              color: #2a5c45;
           }
 
           #mpd.disconnected {
-              background-color: #f53c3c;
           }
 
           #mpd.stopped {
-              background-color: #90b1b1;
           }
 
           #mpd.paused {
-              background-color: #51a37a;
           }
 
           #language {
-              background: #00b093;
-              color: #740864;
-              padding: 0 5px;
-              margin: 0 5px;
-              min-width: 16px;
           }
 
           #keyboard-state {
-              background: #97e1ad;
-              color: #000000;
-              padding: 0 0px;
-              margin: 0 5px;
-              min-width: 16px;
           }
 
           #keyboard-state > label {
-              padding: 0 5px;
           }
 
           #keyboard-state > label.locked {
-              background: rgba(0, 0, 0, 0.2);
           }
 
           #scratchpad {
