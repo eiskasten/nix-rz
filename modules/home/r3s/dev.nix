@@ -15,6 +15,8 @@
             whitespace = "trailing-space,space-before-tab";
           };
 
+          pull.rebase = false;
+
           init.defaultBranch = "main";
           commit.gpgSign = true;
           log.showSignature = true;
