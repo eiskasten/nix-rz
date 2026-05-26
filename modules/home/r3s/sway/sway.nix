@@ -23,6 +23,7 @@
       # };
 
       programs.foot.enable = true;
+      programs.swaylock.enable = true;
 
       # stylix.targets.waybar.font = "emoji";
 
@@ -87,6 +88,9 @@
               "${mod}+Alt+Down" = "move workspace to output down";
               "${mod}+Alt+Up" = "move workspace to output up";
               "${mod}+Alt+Right" = "move workspace to output right";
+
+              # Lock the screen
+              "${mod}+l" = "exec swaylock";
             };
           # bars = [
           #   ({
