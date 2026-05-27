@@ -105,6 +105,7 @@
         ardour
         # reaper
         musescore
+        lilypond
 
         # --- Plugin Hosts ---
         carla # Modular plugin host / pedalboard, supports Windows VST via yabridge
