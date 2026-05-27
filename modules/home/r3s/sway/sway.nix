@@ -11,6 +11,7 @@
     {
 
       home.packages = [
+        pkgs.grim
         pkgs.sway-contrib.grimshot
       ];
 
@@ -78,10 +79,10 @@
               "${mod}+d" = "exec rofi -show drun";
               "${mod}+Shift+w" = "exec rofi -show window";
 
-              "${mod}+p" = "exec grimshot save active";
-              "${mod}+Shift+p" = "exec grimshot save area";
-              "${mod}+Ctrl+Shift+p" = "exec grimshot save output";
-              "${mod}+Ctrl+p" = "exec grimshot save window";
+              "${mod}+p" = "exec grimshot savecopy active";
+              "${mod}+Shift+p" = "exec grimshot savecopy area";
+              "${mod}+Ctrl+Shift+p" = "exec grimshot savecopy output";
+              "${mod}+Ctrl+p" = "exec grimshot savecopy window";
 
               # Move workspaces across outputs
               "${mod}+Alt+Left" = "move workspace to output left";
