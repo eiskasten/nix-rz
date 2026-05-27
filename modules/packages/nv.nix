@@ -1,4 +1,8 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  ...
+}:
 {
   perSystem =
     { pkgs, ... }:
@@ -128,6 +132,9 @@
                     };
                   };
                   html = {
+                    enable = true;
+                  };
+                  css = {
                     enable = true;
                   };
                   typst = {
