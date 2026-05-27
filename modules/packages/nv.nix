@@ -40,6 +40,35 @@
                 autocomplete.nvim-cmp.enable = true;
                 comments.comment-nvim.enable = true;
 
+                extraPlugins.nvim-lilypond-suite = {
+                  package = pkgs.vimUtils.buildVimPlugin {
+                    pname = "nvim-lilypond-suite";
+                    version = "unstable";
+
+                    src = pkgs.fetchFromGitHub {
+                      owner = "martineausimon";
+                      repo = "nvim-lilypond-suite";
+                      rev = "master";
+                      hash = "sha256-/O2rUPjjcKFl44azZ0SJxzOO9mP5bp3VA+Hgt2/Hxu8=";
+                    };
+
+                    nvimRequireCheck = false;
+                    doCheck = false;
+                  };
+
+                  setup = ''
+                    require("nvls").setup({
+                      lilypond = {
+                        mappings = {
+                          player = "<F3>",
+                          compile = "<F5>",
+                          open_pdf = "<F6>",
+                        },
+                      },
+                    })
+                  '';
+                };
+
                 # Other options will go here. Refer to the config
                 # reference in Appendix B of the nvf manual.
                 # ...
