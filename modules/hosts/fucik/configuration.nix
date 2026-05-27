@@ -29,6 +29,7 @@ in
         self.nixosModules.office
         self.nixosModules.audioWorkstationModule
         self.nixosModules.security
+        self.nixosModules.nfc
         self.nixosModules.localeModule
         inputs.stylix.nixosModules.stylix
 
