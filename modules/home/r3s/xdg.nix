@@ -1,11 +1,14 @@
 { ... }:
 {
   flake.homeModules.r3sXDG =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       base = config.home.homeDirectory;
     in
     {
+      home.packages = [
+        pkgs.zathura
+      ];
       xdg.userDirs = {
         enable = true;
 
@@ -17,6 +20,13 @@
         videos = "${base}videos";
         projects = "${base}/src";
 
+      };
+
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+        };
       };
     };
 }
