@@ -21,6 +21,7 @@ in
         inputs.sops-nix.nixosModules.sops
 
         self.nixosModules.dev
+        self.nixosModules.nv
         self.nixosModules.shell
         self.nixosModules.mail
         self.nixosModules.multimedia

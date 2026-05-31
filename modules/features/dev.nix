@@ -41,7 +41,6 @@
         # so git must be installed first
         git
         vim
-        self.packages.${pkgs.system}.nv
 
         curl
 
