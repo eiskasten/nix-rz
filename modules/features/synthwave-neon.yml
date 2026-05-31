@@ -1,0 +1,17 @@
+base00: "080810"
+base01: "101020"
+base02: "1A1A33"
+base03: "5C5C99"
+base04: "9999CC"
+base05: "E0E0FF"
+base06: "F0F0FF"
+base07: "FFFFFF"
+
+base08: "FF355E" # red
+base09: "FB8500" # orange
+base0A: "FFBE0B" # yellow
+base0B: "00F5A0" # green
+base0C: "00E5FF" # cyan
+base0D: "3A86FF" # blue
+base0E: "B517FF" # purple
+base0F: "FF006E" # neon pink
