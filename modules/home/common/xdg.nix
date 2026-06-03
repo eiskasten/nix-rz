@@ -29,5 +29,9 @@
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];
         };
       };
+
+      systemd.user.tmpfiles.rules = [
+        "R ${config.xdg.userDirs.download} - - - 7d"
+      ];
     };
 }
