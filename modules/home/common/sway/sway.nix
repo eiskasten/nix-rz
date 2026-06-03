@@ -13,20 +13,18 @@
       home.packages = [
         pkgs.grim
         pkgs.sway-contrib.grimshot
-      ];
 
-      # stylix.enable = true;
-      # stylix.fonts = {
-      # emoji = {
-      # package = pkgs.font-awesome_6;
-      # name = "FontAwesome";
-      # };
-      # };
+        pkgs.swaybg
+
+        pkgs.font-awesome
+
+        pkgs.grim # screenshot functionality
+        pkgs.slurp # screenshot functionality
+      ];
 
       programs.foot.enable = true;
       programs.swaylock.enable = true;
-
-      # stylix.targets.waybar.font = "emoji";
+      services.wl-clip-persist.enable = true;
 
       wayland.windowManager.sway.checkConfig = false; # required since xkb_layout is registered system-wide which home-manager is not aware of ;(
       wayland.windowManager.sway = {

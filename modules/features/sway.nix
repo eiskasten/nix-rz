@@ -33,20 +33,6 @@
       services.xserver.xkb.layout = "kdf";
       services.xserver.xkb.options = "srvrkeys:none";
 
-      environment.systemPackages = with pkgs; [
-        swaybg
-        swaylock
-
-        foot
-
-        font-awesome
-
-        grim # screenshot functionality
-        slurp # screenshot functionality
-        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-        mako # notification system developed by swaywm maintainer
-      ];
-
       stylix.enable = true;
       stylix.autoEnable = true;
       stylix.polarity = "dark";

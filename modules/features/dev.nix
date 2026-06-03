@@ -43,14 +43,6 @@
         vim
 
         curl
-
-        kubectl
-        vscodium
-
-        mfoc-hardnested
-
-        rustup
-        openjdk25
       ];
 
       virtualisation.podman.enable = true;

@@ -27,7 +27,7 @@ in
         self.nixosModules.multimediaModule
         self.nixosModules.networkModule
         self.nixosModules.brucknerModule
-        self.nixosModules.officeModule
+        self.nixosModules.printModule
         self.nixosModules.audioWorkstationModule
         self.nixosModules.securityModule
         self.nixosModules.nfcModule

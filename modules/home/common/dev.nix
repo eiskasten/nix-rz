@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.homeModules.dev =
-    { ... }:
+    { pkgs, ... }:
     {
       programs.git = {
         enable = true;
@@ -24,5 +24,16 @@
 
         lfs.enable = true;
       };
+
+      programs.bat.enable = true;
+      programs.htop.enable = true;
+      programs.man.enable = true;
+
+      home.packages = [
+        pkgs.mtr
+        pkgs.curl
+        pkgs.wireshark
+      ];
     };
+
 }
