@@ -20,6 +20,7 @@
       imports = [
         self.homeModules.xdg
         self.homeModules.dev
+        self.homeModules.ssh
         self.homeModules.gpg
         self.homeModules.firefox
         self.homeModules.multimedia
