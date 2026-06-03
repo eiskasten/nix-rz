@@ -11,13 +11,14 @@
       ];
       xdg.userDirs = {
         enable = true;
+        createDirectories = true;
 
         desktop = "${base}/desk";
         documents = "${base}/doc";
         download = "${base}/downloads";
         music = "${base}/music";
         pictures = "${base}/pic";
-        videos = "${base}videos";
+        videos = "${base}/videos";
         projects = "${base}/src";
 
       };
