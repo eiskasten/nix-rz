@@ -177,7 +177,7 @@ let
 in
 
 {
-  flake.nixosModules.nv =
+  flake.nixosModules.nvModule =
     { pkgs, ... }:
     {
       imports = [
@@ -191,7 +191,7 @@ in
       };
     };
 
-  flake.homeModules.nv =
+  flake.homeModules.nvModule =
     { pkgs, ... }:
     {
       imports = [

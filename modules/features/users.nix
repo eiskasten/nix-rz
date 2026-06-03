@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.users =
+  flake.nixosModules.usersModule =
     { config, pkgs, ... }:
 
     {

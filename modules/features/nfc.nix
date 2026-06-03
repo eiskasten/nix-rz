@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.nfc =
+  flake.nixosModules.nfcModule =
     { pkgs, ... }:
     {
       hardware.nfc-nci.enable = true;

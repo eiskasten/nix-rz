@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.multimedia =
+  flake.nixosModules.multimediaModule =
     { pkgs, lib, ... }:
     {
 

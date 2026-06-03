@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.mail =
+  flake.nixosModules.mailModule =
     { pkgs, lib, ... }:
     {
       programs.evolution.enable = true;

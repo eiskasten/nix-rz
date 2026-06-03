@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.office =
+  flake.nixosModules.officeModule =
     { pkgs, lib, ... }:
     {
 

@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.network =
+  flake.nixosModules.networkModule =
     { config, pkgs, ... }:
     {
       programs = {

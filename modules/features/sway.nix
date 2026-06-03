@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.sway =
+  flake.nixosModules.swayModule =
     {
       pkgs,
       lib,

@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.security =
+  flake.nixosModules.securityModule =
     { pkgs, lib, ... }:
     {
 

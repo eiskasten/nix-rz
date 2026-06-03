@@ -16,26 +16,26 @@ in
         self.nixosModules.fucikDisko
         # add features here
 
-        self.nixosModules.myHomeManager
+        self.nixosModules.myHomeManagerModule
 
         inputs.sops-nix.nixosModules.sops
 
-        self.nixosModules.dev
-        self.nixosModules.nv
-        self.nixosModules.shell
-        self.nixosModules.mail
-        self.nixosModules.multimedia
-        self.nixosModules.network
+        self.nixosModules.devModule
+        self.nixosModules.nvModule
+        self.nixosModules.shellModule
+        self.nixosModules.mailModule
+        self.nixosModules.multimediaModule
+        self.nixosModules.networkModule
         self.nixosModules.brucknerModule
-        self.nixosModules.office
+        self.nixosModules.officeModule
         self.nixosModules.audioWorkstationModule
-        self.nixosModules.security
-        self.nixosModules.nfc
+        self.nixosModules.securityModule
+        self.nixosModules.nfcModule
         self.nixosModules.localeModule
         inputs.stylix.nixosModules.stylix
 
-        self.nixosModules.sway
-        self.nixosModules.users
+        self.nixosModules.swayModule
+        self.nixosModules.usersModule
       ];
 
       sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";

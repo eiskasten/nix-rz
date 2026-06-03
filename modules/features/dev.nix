@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.dev =
+  flake.nixosModules.devModule =
     { pkgs, lib, ... }:
     {
 

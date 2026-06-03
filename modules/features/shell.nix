@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.shell =
+  flake.nixosModules.shellModule =
     { config, pkgs, ... }:
     {
       users.defaultUserShell = pkgs.zsh;
