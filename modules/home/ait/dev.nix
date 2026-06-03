@@ -1,8 +1,11 @@
-{ ... }:
+{ self, ... }:
 {
   flake.homeModules.aitDev =
     { pkgs, ... }:
     {
+      imports = [
+        self.flake.homeModules.nvModule
+      ];
       home.packages = [
         pkgs.openstackclient-full
         pkgs.uv
