@@ -42,7 +42,15 @@
             REPLY=''${IN_NIX_SHELL+"(nix-shell) "}
           }
           grml_theme_add_token nix-shell-indicator -f nix_shell_prompt '%F{magenta}' '%f'
-          zstyle ':prompt:grml:left:setup' items rc nix-shell-indicator change-root user at host path vcs percent
+
+          function os_token() {
+            if [[ -n "$OS_PROJECT_NAME" ]]; then
+              REPLY=`print "%F{red}<%F{yellow}$OS_PROJECT_NAME:$OS_REGION_NAME%F{red}>%f "`
+            fi
+          }
+          grml_theme_add_token openstack -f os_token
+          zstyle ':prompt:grml:left:setup' items rc nix-shell-indicator change-root user at host path openstack vcs percent
+
         '';
         promptInit = ""; # otherwise it'll override the grml prompt
       };
