@@ -33,6 +33,7 @@
 
         self.homeModules.pass
 
+        self.homeModules.aitStylix
         self.homeModules.aitDev
         self.homeModules.aitSSH
         self.homeModules.aitCommunication
