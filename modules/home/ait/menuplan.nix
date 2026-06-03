@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.aitMenuModule =
+  flake.homeModules.aitMenuplan =
     {
       config,
       lib,
