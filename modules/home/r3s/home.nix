@@ -38,6 +38,16 @@
         self.homeModules.r3sCommunication
 
       ];
+      my.kanshi.internalMonitor = {
+        criteria = "BOE 0x07DB Unknown";
+        mode = "1920x1080@60";
+        scale = 1.0;
+
+        logical = {
+          width = 1920;
+          height = 1080;
+        };
+      };
       home.stateVersion = "26.05";
     };
 }
