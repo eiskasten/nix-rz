@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sRofi =
+  flake.homeModules.rofi =
     { ... }:
     {
       programs.rofi = {

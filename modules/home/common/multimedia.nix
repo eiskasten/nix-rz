@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sMultimedia =
+  flake.homeModules.multimedia =
     { ... }:
     {
       services.playerctld.enable = true;

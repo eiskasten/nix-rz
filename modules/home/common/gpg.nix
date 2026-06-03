@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sGPG =
+  flake.homeModules.gpg =
     { pkgs, ... }:
     {
       services.gpg-agent = {

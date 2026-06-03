@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sXDG =
+  flake.homeModules.xdg =
     { config, pkgs, ... }:
     let
       base = config.home.homeDirectory;

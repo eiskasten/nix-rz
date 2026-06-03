@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sMako =
+  flake.homeModules.mako =
     { ... }:
     {
       services.mako = {

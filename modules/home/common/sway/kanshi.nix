@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sKanshi =
+  flake.homeModules.kanshi =
     { ... }:
     {
       services.kanshi = {

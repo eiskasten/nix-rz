@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sPass =
+  flake.homeModules.pass =
     { pkgs, ... }:
     {
       services.pass-secret-service.enable = true;

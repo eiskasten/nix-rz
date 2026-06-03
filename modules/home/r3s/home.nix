@@ -18,21 +18,24 @@
     { pkgs, ... }:
     {
       imports = [
-        self.homeModules.r3sXDG
+        self.homeModules.xdg
+        self.homeModules.dev
+        self.homeModules.gpg
+        self.homeModules.firefox
+        self.homeModules.multimedia
+
+        self.homeModules.sway
+        self.homeModules.waybar
+        self.homeModules.kanshi
+        self.homeModules.rofi
+        self.homeModules.mako
+
+        self.homeModules.pass
+
         self.homeModules.r3sDev
         self.homeModules.r3sSSH
-        self.homeModules.r3sGPG
-        self.homeModules.r3sFirefox
-        self.homeModules.r3sMultimedia
         self.homeModules.r3sMail
 
-        self.homeModules.r3sSway
-        self.homeModules.r3sWaybar
-        self.homeModules.r3sKanshi
-        self.homeModules.r3sRofi
-        self.homeModules.r3sMako
-
-        self.homeModules.r3sPass
       ];
       home.stateVersion = "26.05";
     };

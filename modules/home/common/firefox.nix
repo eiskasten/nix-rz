@@ -1,9 +1,6 @@
 { self, inputs, ... }:
 {
-  # imports = [
-  #   inputs.firefox-addons.flakeModules.firefox-addons
-  # ];
-  flake.homeModules.r3sFirefox =
+  flake.homeModules.firefox =
     { pkgs, ... }:
     {
       stylix.targets.firefox.profileNames = [ "default" ];

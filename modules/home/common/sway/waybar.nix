@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.homeModules.r3sWaybar =
+  flake.homeModules.waybar =
     { config, lib, ... }:
     let
       base16Names = [

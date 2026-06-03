@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ ... }:
 {
   flake.homeModules.r3sDev =
     { ... }:
@@ -10,24 +10,7 @@
             name = "Richard Stöckl";
             email = "richard.stoeckl@aon.at";
           };
-
-          core = {
-            whitespace = "trailing-space,space-before-tab";
-          };
-
-          pull.rebase = false;
-
-          init.defaultBranch = "main";
-          commit.gpgSign = true;
-          log.showSignature = true;
-          url = {
-            "github:" = {
-              insteadOf = "https://github.com/";
-            };
-          };
         };
-
-        lfs.enable = true;
       };
     };
 }

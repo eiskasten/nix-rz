@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.homeModules.r3sSway =
+  flake.homeModules.sway =
     {
       config,
       pkgs,
