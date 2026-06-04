@@ -1,7 +1,6 @@
 { ... }:
 {
   flake.homeModules.kanshi =
-    { ... }:
     { lib, config, ... }:
 
     let
