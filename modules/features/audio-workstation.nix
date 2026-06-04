@@ -4,7 +4,7 @@
     { pkgs, ... }:
     {
       imports = [
-        inputs.musnix.nixosModules.musnixModule
+        inputs.musnix.nixosModules.default
       ];
 
       musnix.enable = true;
