@@ -10,7 +10,7 @@
 
         blender
         gimp3-with-plugins
-        inkscape
+        # inkscape
       ];
 
     };
