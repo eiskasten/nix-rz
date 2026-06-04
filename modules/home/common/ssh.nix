@@ -39,52 +39,61 @@
       '';
     in
     {
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-        settings = {
-          "*" = {
-            ForwardAgent = false;
-            AddKeysToAgent = "yes";
-            Compression = false;
-            ServerAliveInterval = 0;
-            ServerAliveCountMax = 3;
-            HashKnownHosts = false;
-            UserKnownHostsFile = "~/.ssh/known_hosts";
-            ControlMaster = "no";
-            ControlPath = "~/.ssh/master-%r@%n:%p";
-            ControlPersist = "no";
+      options.rz.ssh = {
+        hosts = lib.mkOption {
+          type = lib.types.attrs;
+          default = { };
+          description = "Custom SSH host definitions.";
+        };
+      };
+      config = {
+        programs.ssh = {
+          enable = true;
+          enableDefaultConfig = false;
+          settings = {
+            "*" = {
+              ForwardAgent = false;
+              AddKeysToAgent = "yes";
+              Compression = false;
+              ServerAliveInterval = 0;
+              ServerAliveCountMax = 3;
+              HashKnownHosts = false;
+              UserKnownHostsFile = "~/.ssh/known_hosts";
+              ControlMaster = "no";
+              ControlPath = "~/.ssh/master-%r@%n:%p";
+              ControlPersist = "no";
+            };
+          }
+          // sshHosts;
+        };
+
+        services.ssh-agent.enable = true;
+
+        systemd.user.services.generate-missing-ssh-keys = {
+          Unit = {
+            Description = "Generate missing SSH keys referenced by Home Manager SSH config";
           };
-        }
-        // sshHosts;
-      };
 
-      services.ssh-agent.enable = true;
-
-      systemd.user.services.generate-missing-ssh-keys = {
-        Unit = {
-          Description = "Generate missing SSH keys referenced by Home Manager SSH config";
+          Service = {
+            Type = "oneshot";
+            ExecStart = "${keygenScript}";
+          };
         };
 
-        Service = {
-          Type = "oneshot";
-          ExecStart = "${keygenScript}";
-        };
-      };
+        systemd.user.timers.generate-missing-ssh-keys = {
+          Unit = {
+            Description = "Periodically generate missing SSH keys";
+          };
 
-      systemd.user.timers.generate-missing-ssh-keys = {
-        Unit = {
-          Description = "Periodically generate missing SSH keys";
-        };
+          Timer = {
+            OnBootSec = "30s";
+            OnUnitActiveSec = "1h";
+            Unit = "generate-missing-ssh-keys.service";
+          };
 
-        Timer = {
-          OnBootSec = "30s";
-          OnUnitActiveSec = "1h";
-          Unit = "generate-missing-ssh-keys.service";
-        };
-
-        Install = {
-          WantedBy = [ "timers.target" ];
+          Install = {
+            WantedBy = [ "timers.target" ];
+          };
         };
       };
     };
