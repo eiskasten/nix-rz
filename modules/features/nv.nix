@@ -204,4 +204,18 @@ in
         settings.vim = vimSettings pkgs;
       };
     };
+
+  perSystem =
+    { pkgs, ... }:
+    let
+      nv = nvfConfig pkgs;
+    in
+    {
+      apps.nv = {
+        type = "app";
+        program = "${nv.neovim}/bin/nvim";
+      };
+
+      packages.nvim = nv.neovim;
+    };
 }
