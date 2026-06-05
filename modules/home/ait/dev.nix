@@ -4,7 +4,7 @@
     { pkgs, ... }:
     {
       imports = [
-        self.flake.homeModules.nvModule
+        self.homeModules.nvModule
       ];
       home.packages = [
         pkgs.openstackclient-full
