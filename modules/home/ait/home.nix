@@ -7,6 +7,7 @@
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     modules = [
       self.homeModules.aitModule
+      inputs.stylix.homeModules.stylix
       {
         home.username = "r3s";
         home.homeDirectory = "/home/r3s";
