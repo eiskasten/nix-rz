@@ -6,14 +6,12 @@
       stylix.enable = true;
       stylix.autoEnable = true;
       stylix.polarity = "dark";
-      stylix.base16Scheme = .../../features/synthwave-neon.yml;
+      stylix.base16Scheme = ../../features/synthwave-neon.yml;
       stylix.cursor = {
         package = pkgs.adwaita-icon-theme;
         name = "Adwaita";
         size = 24;
       };
-
-      stylix.image = ./kirsch.png;
 
       stylix.fonts = {
         serif = {
