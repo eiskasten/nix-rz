@@ -188,6 +188,22 @@ let
 
     notes.obsidian.enable = false;
   };
+  nvfConfig =
+    pkgs:
+    inputs.nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [
+        {
+          config.vim = vimSettings pkgs // {
+            theme.enable = true;
+            theme.transparent = true;
+            theme.name = "dracula";
+            theme.style = "dark";
+
+          };
+        }
+      ];
+    };
 
 in
 
