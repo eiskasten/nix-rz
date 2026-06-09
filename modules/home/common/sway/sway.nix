@@ -22,7 +22,12 @@
         pkgs.slurp # screenshot functionality
       ];
 
-      programs.foot.enable = true;
+      programs.foot = {
+        enable = true;
+        settings = {
+          colors-dark.alpha = 0.9;
+        };
+      };
       programs.swaylock.enable = true;
       services.wl-clip-persist.enable = true;
 
