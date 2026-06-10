@@ -10,9 +10,16 @@
     {
 
       services.xserver.enable = true;
-      services.xserver.displayManager.lightdm.enable = true;
-      programs.sway.enable = true;
-      programs.waybar.enable = true;
+      services.displayManager.lemurs.enable = true;
+
+      services.seatd = {
+        enable = true;
+      };
+
+      programs.sway = {
+        enable = true;
+        wrapperFeatures.gtk = true;
+      };
 
       fonts.fontconfig.enable = true;
 
