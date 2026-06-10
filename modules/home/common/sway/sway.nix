@@ -25,7 +25,7 @@
       programs.foot = {
         enable = true;
         settings = {
-          colors-dark.alpha = 0.9;
+          colors-dark.alpha = lib.mkForce 0.9;
         };
       };
       programs.swaylock.enable = true;
