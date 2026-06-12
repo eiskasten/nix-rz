@@ -220,18 +220,6 @@ let
         }
       ];
     };
-
-  nvfConfig =
-    pkgs:
-    inputs.nvf.lib.neovimConfiguration {
-      inherit pkgs;
-      modules = [
-        {
-          config.vim = vimSettings pkgs;
-        }
-      ];
-    };
-
 in
 
 {
