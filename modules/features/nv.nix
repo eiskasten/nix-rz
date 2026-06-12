@@ -110,6 +110,10 @@ let
       enableTreesitter = true;
       rust = {
         enable = true;
+        format.enable = true;
+        lsp.enable = true;
+        treesitter.enable = true;
+        extensions.crates-nvim.enable = true;
       };
       go = {
         enable = true;
@@ -177,6 +181,18 @@ let
         };
       };
     };
+
+    diagnostics = {
+      enable = true;
+      config = {
+        virtual_text = true;
+        signs = true;
+        underline = true;
+        update_in_insert = false;
+      };
+    };
+
+    debugger.nvim-dap.enable = true;
 
     spellcheck = {
       enable = true;
