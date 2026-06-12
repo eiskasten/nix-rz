@@ -22,7 +22,12 @@
         pkgs.slurp # screenshot functionality
       ];
 
-      programs.foot.enable = true;
+      programs.foot = {
+        enable = true;
+        settings = {
+          colors-dark.alpha = lib.mkForce 0.9;
+        };
+      };
       programs.swaylock.enable = true;
       services.wl-clip-persist.enable = true;
 
@@ -30,7 +35,10 @@
       wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
-        systemd.enable = true;
+        systemd = {
+          enable = true;
+          xdgAutostart = true;
+        };
         config = {
           input = {
             "*" = {

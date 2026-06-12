@@ -67,8 +67,6 @@
           // sshHosts;
         };
 
-        services.ssh-agent.enable = true;
-
         systemd.user.services.generate-missing-ssh-keys = {
           Unit = {
             Description = "Generate missing SSH keys referenced by Home Manager SSH config";

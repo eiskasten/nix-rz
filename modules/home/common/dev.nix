@@ -81,9 +81,22 @@
       };
 
       home.packages = [
+
+        # network utilities
         pkgs.mtr
         pkgs.curl
         pkgs.wireshark
+
+        # file analysis
+        pkgs.binwalk
+        pkgs.file
+        pkgs.hextazy
+
+        # archives
+        pkgs.lzo
+        pkgs.p7zip
+        pkgs.rar
+        pkgs.zip
       ];
     };
 
