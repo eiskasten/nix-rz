@@ -156,7 +156,7 @@ let
       json = {
         enable = true;
         lsp.enable = true;
-        lsp.servers = [ "jsonls" ];
+        lsp.servers = [ "vscode-json-language-server" ];
       };
     };
 
@@ -167,7 +167,7 @@ let
       lspSignature.enable = true;
       trouble.enable = true;
 
-      servers.jsonls = {
+      servers.vscode-json-language-server = {
         enable = true;
 
         settings = {
