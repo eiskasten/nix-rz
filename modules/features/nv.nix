@@ -135,7 +135,18 @@ let
       markdown = {
         enable = true;
         extensions = {
-          markview-nvim.enable = true;
+          markview-nvim = {
+            enable = true;
+            setupOpts = {
+              preview = {
+                filetypes = [
+                  "markdown"
+                  "quarto"
+                  "rmd"
+                ];
+              };
+            };
+          };
         };
         format = {
           enable = true;
