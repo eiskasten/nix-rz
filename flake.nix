@@ -6,12 +6,10 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     import-tree = {
       url = "github:vic/import-tree";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     wrapped-modules = {

@@ -88,7 +88,7 @@
         pkgs.wireshark
 
         # file analysis
-        pkgs.binwalk
+        # pkgs.binwalk # todo: seems to be broken upstream
         pkgs.file
         pkgs.hextazy
 
