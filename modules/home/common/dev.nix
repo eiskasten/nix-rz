@@ -29,6 +29,24 @@
       programs.htop.enable = true;
       programs.man.enable = true;
 
+      home.sessionVariables = {
+        MANPAGER = "less -R";
+        PAGER = "less";
+        LESS = "-R";
+
+        GROFF_NO_SGR = "1";
+
+        LESS_TERMCAP_md = "\\e[1;36m"; # bold
+        LESS_TERMCAP_me = "\\e[0m";
+        LESS_TERMCAP_us = "\\e[1;33m"; # underline
+        LESS_TERMCAP_ue = "\\e[0m";
+        LESS_TERMCAP_so = "\\e[1;44;33m"; # standout
+        LESS_TERMCAP_se = "\\e[0m";
+      };
+
+      # todo: using bat, man only shows partial colors while the rest are color codes in plain text
+      # home.sessionVariables.MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+
       programs.zsh = {
         enable = true;
         syntaxHighlighting = {
