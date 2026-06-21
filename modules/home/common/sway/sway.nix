@@ -11,8 +11,8 @@
     {
 
       home.packages = [
-        pkgs.grim
         pkgs.sway-contrib.grimshot
+        pkgs.wl-clipboard
 
         pkgs.swaybg
 
@@ -20,6 +20,7 @@
 
         pkgs.grim # screenshot functionality
         pkgs.slurp # screenshot functionality
+        pkgs.zbar # scan qr-codes
       ];
 
       programs.foot = {
@@ -89,6 +90,9 @@
               "${mod}+Shift+p" = "exec grimshot savecopy area";
               "${mod}+Ctrl+Shift+p" = "exec grimshot savecopy output";
               "${mod}+Ctrl+p" = "exec grimshot savecopy window";
+
+              # Scan qr-codes
+              "${mod}+q" = ''exec grim -g "$(slurp)" - | zbarimg --quiet --raw - | wl-copy'';
 
               # Move workspaces across outputs
               "${mod}+Alt+Left" = "move workspace to output left";
