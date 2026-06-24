@@ -32,6 +32,21 @@ let
       })
     '';
 
+    luaConfigRC.typstPreview = ''
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "typst",
+        callback = function(ev)
+          vim.keymap.set("n", "<leader>tp", function()
+            local file = vim.fn.expand("%")
+            local pdf = vim.fn.expand("%:r") .. ".pdf"
+
+            vim.fn.jobstart({ "typst", "watch", file }, { detach = true })
+            vim.fn.jobstart({ "xdg-open", pdf }, { detach = true })
+          end, { buffer = ev.buf, desc = "Typst preview" })
+        end,
+      })
+    '';
+
     # Enable wayland clipboard
     clipboard = {
       enable = true;
