@@ -40,6 +40,12 @@
       wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
+        extraSessionCommands = ''
+          exec </dev/null
+          exec >/tmp/sway-session.log
+          exec 2>&1
+        '';
+
         systemd = {
           enable = true;
           xdgAutostart = true;
