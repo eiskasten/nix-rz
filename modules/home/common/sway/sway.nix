@@ -8,6 +8,9 @@
       inputs,
       ...
     }:
+    let
+      rofiExe = "rofi";
+    in
     {
 
       home.packages = [
@@ -83,8 +86,13 @@
 
               "${mod}+Shift+s" = "exec pavucontrol";
 
-              "${mod}+d" = "exec rofi -show drun";
-              "${mod}+Shift+w" = "exec rofi -show window";
+              "${mod}+d" = "exec ${rofiExe} -show drun";
+              "${mod}+Shift+w" = "exec ${rofiExe} -show window";
+              "${mod}+Shift+f" = "exec ${rofiExe} -show filebrowser";
+
+              "${mod}+Shift+n" = "exec ${lib.getExe pkgs.rofi-network-manager}";
+              "${mod}+Shift+v" = "exec ${lib.getExe pkgs.rofi-vpn}";
+              "${mod}+Shift+b" = "exec ${lib.getExe pkgs.rofi-bluetooth}";
 
               "${mod}+p" = "exec grimshot savecopy active";
               "${mod}+Shift+p" = "exec grimshot savecopy area";
