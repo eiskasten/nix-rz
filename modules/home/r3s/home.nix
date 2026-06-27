@@ -24,6 +24,7 @@
         self.homeModules.gpg
         self.homeModules.firefox
         self.homeModules.multimedia
+        self.homeModules.office
 
         self.homeModules.sway
         self.homeModules.waybar
