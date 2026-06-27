@@ -121,15 +121,6 @@
               # Lock the screen
               "${mod}+l" = "exec swaylock";
             };
-          # bars = [
-          #   ({
-          #     position = "top";
-          #     workspaceButtons = true;
-          #     workspaceNumbers = true;
-          #     statusCommand = "${pkgs.i3status}/bin/i3status";
-          #     trayOutput = "primary";
-          #   } // config.stylix.targets.sway.exportedBarConfig)
-          # ];
           bars = [ ];
         };
       };
