@@ -10,6 +10,7 @@
     }:
     let
       rofiExe = "rofi";
+      colors = config.lib.stylix.colors.withHashtag;
     in
     {
 
@@ -50,6 +51,9 @@
               xkb_options = "srvrkeys:none";
             };
           };
+
+          colors.focused.border = lib.mkForce colors.base0C;
+          colors.focused.childBorder = lib.mkForce colors.base0C;
 
           modifier = "Mod4";
           left = "h";
