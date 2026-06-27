@@ -22,11 +22,6 @@
 
       programs.bat.enable = true;
 
-      environment.variables = {
-        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        MANGROFOPT = "-c";
-      };
-
       environment.shellAliases = {
         nv = "vim";
       };
