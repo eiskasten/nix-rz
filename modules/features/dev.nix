@@ -38,6 +38,10 @@
         vim
 
         curl
+
+        # sops encryption utilities
+        age
+        sops
       ];
 
       virtualisation.podman.enable = true;

@@ -9,7 +9,7 @@
     }:
     {
       sops.secrets."accounts/bruckner" = {
-        sopsFile = ../secrets/r3s.yaml;
+        sopsFile = ../secrets/r3s-home/r3s.yaml;
       };
       sops.templates."bruckner-credentials".content = ''
         user=richi

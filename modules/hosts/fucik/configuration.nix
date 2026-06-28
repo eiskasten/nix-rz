@@ -40,7 +40,7 @@ in
 
       sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";
       sops.age.generateKey = false;
-      sops.defaultSopsFile = ../../secrets/net.yaml;
+      sops.defaultSopsFile = ../../secrets/nixos/net.yaml;
 
       networking.hostName = "fucik";
 

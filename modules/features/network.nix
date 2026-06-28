@@ -17,7 +17,10 @@
 
       services.openssh.enable = true;
       networking.firewall.enable = true;
-      sops.secrets."net/wifi/kurti-wlan" = { };
+      sops.secrets."net/wifi/kurti-wlan" = {
+        sopsFile = ../secrets/nixos/net.yaml;
+      };
+
       networking.networkmanager.ensureProfiles.profiles = {
         kurti-wlan = {
           connection = {
@@ -49,9 +52,8 @@
         {
           file = config.sops.secrets."net/wifi/kurti-wlan".path;
           key = "psk";
-          matchId = "Kurti Wlan";
+          matchId = "kurti-wlan";
           matchSetting = "wifi-security";
-          matchType = "wifi";
         }
 
       ];
