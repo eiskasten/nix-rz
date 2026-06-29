@@ -8,6 +8,10 @@
       inputs,
       ...
     }:
+    let
+      rofiExe = "rofi";
+      colors = config.lib.stylix.colors.withHashtag;
+    in
     {
 
       home.packages = [
@@ -36,6 +40,12 @@
       wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
+        extraSessionCommands = ''
+          exec </dev/null
+          exec >/tmp/sway-session.log
+          exec 2>&1
+        '';
+
         systemd = {
           enable = true;
           xdgAutostart = true;
@@ -47,6 +57,9 @@
               xkb_options = "srvrkeys:none";
             };
           };
+
+          colors.focused.border = lib.mkForce colors.base0C;
+          colors.focused.childBorder = lib.mkForce colors.base0C;
 
           modifier = "Mod4";
           left = "h";
@@ -83,8 +96,13 @@
 
               "${mod}+Shift+s" = "exec pavucontrol";
 
-              "${mod}+d" = "exec rofi -show drun";
-              "${mod}+Shift+w" = "exec rofi -show window";
+              "${mod}+d" = "exec ${rofiExe} -show drun";
+              "${mod}+Shift+w" = "exec ${rofiExe} -show window";
+              "${mod}+Shift+f" = "exec ${rofiExe} -show filebrowser";
+
+              "${mod}+Shift+n" = "exec ${lib.getExe pkgs.rofi-network-manager}";
+              "${mod}+Shift+v" = "exec ${lib.getExe pkgs.rofi-vpn}";
+              "${mod}+Shift+b" = "exec ${lib.getExe pkgs.rofi-bluetooth}";
 
               "${mod}+p" = "exec grimshot savecopy active";
               "${mod}+Shift+p" = "exec grimshot savecopy area";
@@ -103,15 +121,6 @@
               # Lock the screen
               "${mod}+l" = "exec swaylock";
             };
-          # bars = [
-          #   ({
-          #     position = "top";
-          #     workspaceButtons = true;
-          #     workspaceNumbers = true;
-          #     statusCommand = "${pkgs.i3status}/bin/i3status";
-          #     trayOutput = "primary";
-          #   } // config.stylix.targets.sway.exportedBarConfig)
-          # ];
           bars = [ ];
         };
       };

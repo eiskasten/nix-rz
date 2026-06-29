@@ -10,6 +10,9 @@ in
       config,
       ...
     }:
+    let
+      r3sHomeAgeKey = "/var/lib/sops-nix/r3s-home.txt";
+    in
     {
       imports = [
         self.nixosModules.fucikHardware
@@ -26,7 +29,7 @@ in
         self.nixosModules.mailModule
         self.nixosModules.multimediaModule
         self.nixosModules.networkModule
-        self.nixosModules.brucknerModule
+        # self.nixosModules.brucknerModule
         self.nixosModules.printModule
         self.nixosModules.audioWorkstationModule
         self.nixosModules.securityModule
@@ -40,7 +43,11 @@ in
 
       sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";
       sops.age.generateKey = false;
-      sops.defaultSopsFile = ../../secrets/net.yaml;
+      sops.defaultSopsFile = ../../secrets/nixos/net.yaml;
+
+      home-manager.users.r3s = {
+        rz.sops.keyFile = r3sHomeAgeKey;
+      };
 
       networking.hostName = "fucik";
 

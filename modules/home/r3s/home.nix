@@ -15,7 +15,12 @@
   };
 
   flake.homeModules.r3sModule =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      osConfig ? null,
+      ...
+    }:
     {
       imports = [
         self.homeModules.xdg
@@ -24,6 +29,7 @@
         self.homeModules.gpg
         self.homeModules.firefox
         self.homeModules.multimedia
+        self.homeModules.office
 
         self.homeModules.sway
         self.homeModules.waybar
@@ -32,6 +38,7 @@
         self.homeModules.mako
 
         self.homeModules.pass
+        self.homeModules.sops
 
         self.homeModules.r3sDev
         self.homeModules.r3sSSH
