@@ -1,7 +1,4 @@
 { self, inputs, ... }:
-let
-  shortKeyname = "fucik.txt";
-in
 {
   flake.nixosModules.fucikConfiguration =
     {
@@ -11,7 +8,7 @@ in
       ...
     }:
     let
-      r3sHomeAgeKey = "/var/lib/sops-nix/r3s-home.txt";
+      r3sHomeAgeKey = "/var/lib/sops-nix/keys/r3s-home.txt";
     in
     {
       imports = [
@@ -29,10 +26,11 @@ in
         self.nixosModules.mailModule
         self.nixosModules.multimediaModule
         self.nixosModules.networkModule
-        # self.nixosModules.brucknerModule
+        self.nixosModules.brucknerModule
         self.nixosModules.printModule
         self.nixosModules.audioWorkstationModule
         self.nixosModules.securityModule
+        self.nixosModules.sopsModule
         self.nixosModules.nfcModule
         self.nixosModules.localeModule
         inputs.stylix.nixosModules.stylix
@@ -40,10 +38,6 @@ in
         self.nixosModules.swayModule
         self.nixosModules.usersModule
       ];
-
-      sops.age.keyFile = "/var/lib/sops-nix/${shortKeyname}";
-      sops.age.generateKey = false;
-      sops.defaultSopsFile = ../../secrets/nixos/net.yaml;
 
       home-manager.users.r3s = {
         rz.sops.keyFile = r3sHomeAgeKey;
