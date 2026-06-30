@@ -64,7 +64,7 @@
       accounts.contact.accounts.radicaleCard = {
         local = {
           type = "filesystem";
-          fileExt = ".ics";
+          fileExt = ".vcf";
         };
 
         remote = {
