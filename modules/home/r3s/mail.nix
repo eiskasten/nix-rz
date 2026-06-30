@@ -107,6 +107,8 @@
             "text/calendar" = "calendar";
             "text/html" = "html | colorize";
           };
+
+          general.unsafe-accounts-conf = true;
         };
       };
 
@@ -123,7 +125,7 @@
 
       accounts.email.accounts.aon = {
         primary = true;
-        neomutt = {
+        aerc = {
           enable = true;
         };
         address = "richard.stoeckl@aon.at";
@@ -149,7 +151,10 @@
           expunge = "both";
           patterns = [ "*" ];
         };
-        gpg.signByDefault = true;
+        gpg = {
+          signByDefault = true;
+          key = "4EF3ABE048F0F9104B2EE99E1655AA01E42A9CBC";
+        };
       };
 
       programs.neomutt = {
