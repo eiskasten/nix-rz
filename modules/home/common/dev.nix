@@ -105,6 +105,13 @@
         pkgs.curl
         pkgs.wireshark
 
+        # infrastructure
+        pkgs.kubectl
+        pkgs.talosctl
+        pkgs.k9s
+        pkgs.sops
+        pkgs.age
+
         # file analysis
         # pkgs.binwalk # todo: seems to be broken upstream
         pkgs.file
